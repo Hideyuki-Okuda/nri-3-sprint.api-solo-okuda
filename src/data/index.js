@@ -1,5 +1,5 @@
-const { shops } = require('./shop.json');
+const { shop } = require('./shop.json');
 
 module.exports = {
-    shops,
+    shop,
 };
