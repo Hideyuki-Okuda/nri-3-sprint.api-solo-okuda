@@ -13,7 +13,6 @@ npm init -y
 npm install -D eslint
 npm install -D prettier
 npm install swagger-ui-express swagger-jsdoc
-
 npm install -D nodemon
 ```
 

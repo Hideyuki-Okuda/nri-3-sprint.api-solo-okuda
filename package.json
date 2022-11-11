@@ -1,30 +1,31 @@
 {
-  "name": "nri-3-sprint.api-solo-okuda",
-  "version": "1.0.0",
-  "description": "API ソロプロジェクトの奥田成果物。",
-  "main": "index.js",
-  "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js",
-    "lint": "eslint --fix --ext .js .",
-    "test": "mocha test && npm run lint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Hideyuki-Okuda/nri-3-sprint.api-solo-okuda.git"
-  },
-  "author": "Okuda",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Hideyuki-Okuda/nri-3-sprint.api-solo-okuda/issues"
-  },
-  "homepage": "https://github.com/Hideyuki-Okuda/nri-3-sprint.api-solo-okuda#readme",
-  "devDependencies": {
-    "eslint": "^8.27.0",
-    "prettier": "^2.7.1"
-  },
-  "dependencies": {
-    "swagger-jsdoc": "^6.2.5",
-    "swagger-ui-express": "^4.6.0"
-  }
+    "name": "nri-3-sprint.api-solo-okuda",
+    "version": "1.0.0",
+    "description": "API ソロプロジェクトの奥田成果物。",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ./src/index.js",
+        "dev": "nodemon ./src/index.js",
+        "lint": "eslint --fix --ext .js .",
+        "test": "mocha test && npm run lint"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Hideyuki-Okuda/nri-3-sprint.api-solo-okuda.git"
+    },
+    "author": "Okuda",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Hideyuki-Okuda/nri-3-sprint.api-solo-okuda/issues"
+    },
+    "homepage": "https://github.com/Hideyuki-Okuda/nri-3-sprint.api-solo-okuda#readme",
+    "devDependencies": {
+        "eslint": "^8.27.0",
+        "nodemon": "^2.0.20",
+        "prettier": "^2.7.1"
+    },
+    "dependencies": {
+        "swagger-jsdoc": "^6.2.5",
+        "swagger-ui-express": "^4.6.0"
+    }
 }
