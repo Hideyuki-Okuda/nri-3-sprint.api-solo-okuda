@@ -20,7 +20,10 @@
     },
     "homepage": "https://github.com/Hideyuki-Okuda/nri-3-sprint.api-solo-okuda#readme",
     "devDependencies": {
+        "chai": "^4.3.7",
+        "chai-http": "^4.3.0",
         "eslint": "^8.27.0",
+        "mocha": "^10.1.0",
         "nodemon": "^2.0.20",
         "prettier": "^2.7.1"
     },

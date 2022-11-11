@@ -10,10 +10,12 @@ npm 初期設定＆インストール
 
 ```
 npm init -y
+npm install swagger-ui-express swagger-jsdoc
+
 npm install -D eslint
 npm install -D prettier
-npm install swagger-ui-express swagger-jsdoc
 npm install -D nodemon
+npm install -D chai chai-http
 ```
 
 必要に応じて `package.json` を書き換え
