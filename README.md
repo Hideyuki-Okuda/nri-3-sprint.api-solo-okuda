@@ -7,18 +7,24 @@ API ソロプロジェクトの奥田成果物。
 ## プロジェクト初期化
 
 npm 初期設定＆インストール
+`package.json` を参照
+
+## DB 構築
+
+npm 初期設定＆インストール
 
 ```
-npm init -y
-npm install swagger-ui-express swagger-jsdoc
+//データベース作成
+echo CREATE DATABASE gourmet_api; | psql -h localhost -p 5432 -U postgres
 
-npm install -D eslint
-npm install -D prettier
-npm install -D nodemon
-npm install -D chai chai-http
+//接続確認
+psql -h localhost -p 5432 -U postgres -d gourmet_api
+
+//knex設定とテーブル作成
+npm install knex //実行後、作成されたknexfile.jsを修正
+knex migrate:make create_shop_table
+knex seed:make shop_seed
 ```
-
-必要に応じて `package.json` を書き換え
 
 ## express 実装
 
@@ -33,15 +39,23 @@ touch routes/books.js
 ## セットアップ
 
 ```
+
 git clone <this repository>
 cd express-swagger-demo/
 npm install
+
 ```
 
 ## サーバ起動
 
 ```
+
 npm run dev
+
 ```
 
 Swagger UI へアクセス: http://localhost:3000/api-docs
+
+```
+
+```
