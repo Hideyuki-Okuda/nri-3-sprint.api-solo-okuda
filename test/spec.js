@@ -17,33 +17,34 @@ describe('gourmet API Server', () => {
     beforeEach(() => {
         request = chai.request(server);
     });
+    //TODO テスト実行時にDBをリセットするように修正する
 
-    describe('GET /shop', () => {
+    describe('GET /shops', () => {
         it("should return the list of all shops'", async () => {
-            const res = await request.get('/shop');
+            const res = await request.get('/shops');
             res.body.should.deep.equal(shop);
         });
     });
 
-    describe('POST /shop', () => {
+    describe('POST /shops', () => {
         it('should add a shop', async () => {
-            const res = await request.post('/shop').send(newShop);
+            const res = await request.post('/shops').send(newShop);
             console.log(res.body);
             res.status.should.equal(200);
         });
     });
 
-    describe('PATCH /shop/:id', () => {
+    describe('PATCH /shops/:id', () => {
         it('should edit a shop by id', async () => {
-            const res = await request.patch('/shop/1').send(editShop);
+            const res = await request.patch('/shops/1').send(editShop);
             console.log(res.body);
             res.status.should.equal(200);
         });
     });
 
-    describe('DELETE /shop/:id', () => {
+    describe('DELETE /shops/:id', () => {
         it('should delete a shop by id', async () => {
-            const res = await request.delete('/shop/1');
+            const res = await request.delete('/shops/1');
             console.log(res.body);
             res.status.should.equal(200);
         });

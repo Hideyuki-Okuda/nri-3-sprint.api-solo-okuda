@@ -8,16 +8,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const setupServer = () => {
-    //GET /shop
-    app.get('/shop', (req, res) => {
+    //GET /shops
+    app.get('/shops', (req, res) => {
         knex('shop')
             .select('*')
             .then((results) => res.json(results))
             .catch((err) => res.json(err));
     });
 
-    //POST /shop
-    app.post('/shop', (req, res) => {
+    //POST /shops
+    app.post('/shops', (req, res) => {
         const shop = req.body;
         knex('shop')
             .insert(shop)
@@ -26,8 +26,8 @@ const setupServer = () => {
             .catch((err) => res.json(err));
     });
 
-    //PATCH /shop/:id
-    app.patch('/shop/:id', (req, res) => {
+    //PATCH /shops/:id
+    app.patch('/shops/:id', (req, res) => {
         const shopId = req.params.id;
         knex('shop')
             .where({ id: shopId })
@@ -39,8 +39,8 @@ const setupServer = () => {
             });
     });
 
-    //DELETE /shop/:id
-    app.delete('/shop/:id', (req, res) => {
+    //DELETE /shops/:id
+    app.delete('/shops/:id', (req, res) => {
         const shopId = req.params.id;
         knex('shop')
             .where({ id: shopId })
