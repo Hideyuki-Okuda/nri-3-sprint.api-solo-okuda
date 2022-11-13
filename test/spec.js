@@ -26,10 +26,22 @@ describe('gourmet API Server', () => {
         });
     });
 
+    describe('GET /shops/:idOrName', () => {
+        it("should return the shop by id'", async () => {
+            const res = await request.get('/shops/3');
+            res.body.should.deep.equal(shop[2]);
+        });
+        it("should return the shop by name'", async () => {
+            const res = await request.get(
+                '/shops/%E3%81%8A%E3%81%95%E3%81%8B%E3%81%AA'
+            );
+            res.body.should.deep.equal(shop[1]);
+        });
+    });
+
     describe('POST /shops', () => {
         it('should add a shop', async () => {
             const res = await request.post('/shops').send(newShop);
-            console.log(res.body);
             res.status.should.equal(200);
         });
     });
@@ -37,15 +49,13 @@ describe('gourmet API Server', () => {
     describe('PATCH /shops/:id', () => {
         it('should edit a shop by id', async () => {
             const res = await request.patch('/shops/1').send(editShop);
-            console.log(res.body);
             res.status.should.equal(200);
         });
     });
 
     describe('DELETE /shops/:id', () => {
         it('should delete a shop by id', async () => {
-            const res = await request.delete('/shops/1');
-            console.log(res.body);
+            const res = await request.delete('/shops/4');
             res.status.should.equal(200);
         });
     });
