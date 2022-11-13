@@ -23,9 +23,7 @@ module.exports = {
     },
 
     create(shop) {
-        return knex('shop')
-            .insert(shop)
-            .then((res) => res[0].id);
+        return knex('shop').insert(shop);
     },
 
     /**
@@ -34,10 +32,7 @@ module.exports = {
      * @return {Promise<integer>} A promise that resolves to the id of the updated customer.
      */
     update(id, shop) {
-        return knex(SHOP_TABLE)
-            .where({ id: id })
-            .update(shop)
-            .then((res) => res[0].id);
+        return knex(SHOP_TABLE).where({ id: id }).update(shop);
     },
 
     /**
@@ -45,9 +40,6 @@ module.exports = {
      * @return {Promise<integer>}
      */
     delete(id) {
-        return knex(SHOP_TABLE)
-            .where({ id: id })
-            .delete()
-            .then((res) => res[0].id);
+        return knex(SHOP_TABLE).where({ id: id }).delete();
     },
 };

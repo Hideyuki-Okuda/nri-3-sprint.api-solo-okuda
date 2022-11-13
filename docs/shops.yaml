@@ -1,0 +1,172 @@
+paths:
+    /shops:
+        get:
+            tags: ['shops']
+            summary: 店舗一覧取得
+            description: '店舗一覧を取得する'
+            responses:
+                200:
+                    description: 成功時
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Shop'
+        post:
+            tags: ['shops']
+            summary: 店舗情報追加
+            description: 店舗情報を追加する
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Shop'
+            responses:
+                201:
+                    description: 成功時
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    properties:
+                                        url:
+                                            type: string
+                                example:
+                                    - url: http://localhost:3000/videos/feSVtC1BSeQ
+                400:
+                    description: 失敗時
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ValidationError'
+                            examples:
+                                必須項目エラー:
+                                    value:
+                                        message: 必須項目がありません
+                                        required: title
+                                不正項目エラー:
+                                    value:
+                                        message: 不正な項目が含まれています
+                                        invalid: abcdefg
+    /shops/{idOrName}:
+        get:
+            tags: ['shops']
+            summary: 店舗情報取得
+            description: 店舗IDもしくは店舗名を指定して店舗情報を取得する
+            parameters:
+                - name: idOrName
+                  in: path
+                  required: true
+            responses:
+                200:
+                    description: 成功時
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Shop'
+                400:
+                    description: 失敗時
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                example: []
+    /shops/{id}:
+        patch:
+            tags: ['shops']
+            summary: 店舗情報編集
+            description: 店舗IDを指定し店舗情報を編集する
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  type: string
+            required: true
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Shop'
+            responses:
+                200:
+                    description: 成功時
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    url:
+                400:
+                    description: 失敗時
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ValidationError'
+                            examples:
+                                必須項目エラー:
+                                    value:
+                                        message: 必須項目がありません
+                                        required: title
+                                不正項目エラー:
+                                    value:
+                                        message: 不正な項目が含まれています
+                                        invalid: abcdefg
+        delete:
+            tags: ['shops']
+            summary: 店舗情報削除
+            description: 店舗IDを指定し店舗情報を削除する
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  type: string
+            responses:
+                204:
+                    description: 成功時
+                404:
+                    description: '失敗時'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                example: []
+components:
+    schemas:
+        Shop:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 店舗ID
+                    example: 1
+                name:
+                    type: string
+                    description: 店舗名
+                    example: 'おさかなバル新宿店'
+                tel:
+                    type: string
+                    description: 電話番号
+                    example: '08020102010'
+                email:
+                    type: string
+                    description: メールアドレス
+                    example: 'osakana@gmail.com'
+        ValidationError:
+            type: object
+            properties:
+                message:
+                    type: string
+                    description: エラーメッセージ
+                    example: 必須項目がありません
+                required:
+                    type: string
+                    description: 必須項目
+                    example: title
+                invalid:
+                    type: string
+                    description: 不正な項目
+                    example: abcdefg
