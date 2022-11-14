@@ -2,8 +2,8 @@ paths:
     /shops:
         get:
             tags: ['shops']
-            summary: 店舗一覧取得
-            description: '店舗一覧を取得する'
+            summary: 店舗情報一覧取得
+            description: '店舗情報一覧を取得する'
             responses:
                 200:
                     description: 成功時
@@ -34,22 +34,15 @@ paths:
                                         url:
                                             type: string
                                 example:
-                                    - url: http://localhost:3000/videos/feSVtC1BSeQ
+                                    - url: http://localhost:3000/shops/3
                 400:
                     description: 失敗時
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ValidationError'
-                            examples:
-                                必須項目エラー:
-                                    value:
-                                        message: 必須項目がありません
-                                        required: title
-                                不正項目エラー:
-                                    value:
-                                        message: 不正な項目が含まれています
-                                        invalid: abcdefg
+                                type: array
+                                example:
+                                    - message: エラーメッセージ
     /shops/{idOrName}:
         get:
             tags: ['shops']
@@ -74,7 +67,8 @@ paths:
                         application/json:
                             schema:
                                 type: array
-                                example: []
+                                example:
+                                    - message: エラーメッセージ
     /shops/{id}:
         patch:
             tags: ['shops']
@@ -92,7 +86,7 @@ paths:
                         schema:
                             $ref: '#/components/schemas/Shop'
             responses:
-                200:
+                202:
                     description: 成功時
                     content:
                         application/json:
@@ -105,16 +99,9 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ValidationError'
-                            examples:
-                                必須項目エラー:
-                                    value:
-                                        message: 必須項目がありません
-                                        required: title
-                                不正項目エラー:
-                                    value:
-                                        message: 不正な項目が含まれています
-                                        invalid: abcdefg
+                                type: array
+                                example:
+                                    - message: エラーメッセージ
         delete:
             tags: ['shops']
             summary: 店舗情報削除
@@ -127,13 +114,14 @@ paths:
             responses:
                 204:
                     description: 成功時
-                404:
+                400:
                     description: '失敗時'
                     content:
                         application/json:
                             schema:
                                 type: array
-                                example: []
+                                example:
+                                    - message: エラーメッセージ
 components:
     schemas:
         Shop:
@@ -155,18 +143,3 @@ components:
                     type: string
                     description: メールアドレス
                     example: 'osakana@gmail.com'
-        ValidationError:
-            type: object
-            properties:
-                message:
-                    type: string
-                    description: エラーメッセージ
-                    example: 必須項目がありません
-                required:
-                    type: string
-                    description: 必須項目
-                    example: title
-                invalid:
-                    type: string
-                    description: 不正な項目
-                    example: abcdefg
