@@ -8,48 +8,61 @@
 -   [Usage](#usage)
 </details>
 
-## About
+# About
 
 API ソロプロジェクトの奥田成果物。  
 飲食店(shop)の情報について、取得/編集/削除が可能。
 
-## Getting Started
+# Getting Started
 
-### プロジェクト初期化
-
-npm 初期設定＆インストール
+## ダウンロード
 
 ```
-npm install
+git clone <this repository>
+cd nri-3-sprint.api-solo-okuda/
+npm install　#インストールされるパッケージはpackage.json参照
 ```
 
-インストールされるパッケージは`package.json` を参照
-
-### DB 構築
-
-npm 初期設定＆インストール
+## DB 構築
 
 ```
-//データベース作成
-echo CREATE DATABASE gourmet_api; | psql -h localhost -p 5432 -U postgres
-
-//接続確認
-psql -h localhost -p 5432 -U postgres -d gourmet_api
-
-//knex設定とテーブル作成
-knex migrate:make create_shop_table
-knex seed:make shop_seed
+touch .env.local
 ```
 
-## API references
+作成された`.env.local` に、下記内容を記述する
+
+```
+例）
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=password01
+DB_NAME=gourmet_api
+```
+
+```
+echo "CREATE DATABASE gourmet_api;" | psql
+npm run migrate
+npm run seed
+```
+
+## サーバ起動
+
+```
+npm run dev
+```
+
+# API references
+
+### ドキュメント
+
+-   サーバ起動した状態で下記を参照  
+    http://localhost:3000/api-docs
+
+### メソッド一覧
 
 -   `GET /shops`
-
-    -   ランチシステム上の全飲食店を返します。
-        -   パスパラメータ：なし
-        -   クエリパラメータ：なし
-        -   リクエスト：
-        -   レスポンス：
-
+-   `GET /shops/{idOrName}`
 -   `POST /shops`
-    -   飲食店データを追加します。
+-   `PATCH /shops/{id}`
+-   `DELETE /shops/{id}`

@@ -5,11 +5,6 @@ const SHOP_TABLE = 'shop';
 module.exports = {
     SHOP_TABLE,
 
-    /**
-     * @param {}
-     * @return {Promise<Array>}
-     */
-    //GET /shops
     selectAll() {
         return knex(SHOP_TABLE).select('*').orderBy('id');
     },
@@ -26,19 +21,10 @@ module.exports = {
         return knex('shop').insert(shop);
     },
 
-    /**
-     * @param {integer} id - The unique id of the existing customer.
-     * @param {Object} shop - The customer data to change.
-     * @return {Promise<integer>} A promise that resolves to the id of the updated customer.
-     */
     update(id, shop) {
         return knex(SHOP_TABLE).where({ id: id }).update(shop);
     },
 
-    /**
-     * @param {integer} id
-     * @return {Promise<integer>}
-     */
     delete(id) {
         return knex(SHOP_TABLE).where({ id: id }).delete();
     },
